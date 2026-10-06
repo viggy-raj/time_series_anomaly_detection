@@ -1,0 +1,11 @@
+{
+  "threshold": 0.004247,
+  "precision": 0.4639,
+  "recall": 0.446,
+  "f1_score": 0.4548,
+  "auroc": 0.7888,
+  "average_precision": 0.5697,
+  "n_anomalies_true": 24381,
+  "n_anomalies_pred": 23440,
+  "n_windows_total": 87782
+}

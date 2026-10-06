@@ -1,0 +1,62 @@
+======================================================================
+SUMMARY REPORT
+Explainable Deep Learning for Anomaly Detection on Time-Series Data
+======================================================================
+
+Generated    : 2026-09-07 10:20:33
+Dataset      : PSM (Pooled Server Metrics)
+Model        : LSTM Autoencoder
+
+--- Architecture ---
+  Window size  : 60 timesteps
+  Hidden size  : 64
+  Latent size  : 32
+  Trained for  : loaded from checkpoint
+  Train time   : N/A (checkpoint loaded)
+
+--- Evaluation Metrics (Test Set) ---
+  Threshold (99th pct) : 0.004247
+  Precision            : 0.4639
+  Recall               : 0.446
+  F1 Score             : 0.4548
+  AUROC                : 0.7888
+  Average Precision    : 0.5697
+  True anomalies       : 24381
+  Predicted anomalies  : 23440
+  Total test windows   : 87782
+
+--- Top Features (Integrated Gradients attribution) ---
+  #1: feature_3                       |IG| = 0.000889
+  #2: feature_1                       |IG| = 0.000356
+  #3: feature_10                      |IG| = 0.000071
+  #4: feature_11                      |IG| = 0.000048
+  #5: feature_16                      |IG| = 0.000047
+
+--- Interpretation ---
+  The LSTM Autoencoder was trained exclusively on normal (non-anomalous)
+  server metric windows. It learns to reconstruct normal behaviour.
+  At inference time, windows with high reconstruction error are flagged
+  as anomalous. The threshold was set at the 99th percentile of training
+  reconstruction errors, providing a principled, data-driven cutoff.
+
+  Integrated Gradients (IG) attributed anomaly scores back to input
+  features for the top-5 highest-error anomaly windows. The top features
+  listed above contributed most to the reconstruction error spikes.
+
+--- Output Files ---
+  outputs/model.pth                       -- Trained model checkpoint
+  outputs/metrics/metrics.json            -- All evaluation metrics
+  outputs/metrics/metrics.csv             -- Same in tabular form
+  outputs/metrics/shap_feature_importance.json -- SHAP feature ranking
+  outputs/plots/train_loss.png            -- Training curve
+  outputs/plots/roc_curve.png             -- ROC curve
+  outputs/plots/pr_curve.png              -- Precision-Recall curve
+  outputs/plots/anomaly_overlay.png       -- Error vs ground truth
+  outputs/plots/error_distribution.png   -- Error histogram
+  outputs/plots/ig_summary.png            -- Global IG bar chart
+  outputs/plots/ig_heatmap.png            -- IG attribution heatmap
+  outputs/plots/shap_anomaly_*.png        -- Per-anomaly IG bars
+  outputs/plots/saliency_*.png            -- Saliency heatmaps
+  outputs/plots/eda/                      -- EDA figures
+
+======================================================================

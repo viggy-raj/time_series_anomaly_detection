@@ -1,0 +1,2 @@
+threshold,precision,recall,f1_score,auroc,average_precision,n_anomalies_true,n_anomalies_pred,n_windows_total
+0.004247,0.4639,0.446,0.4548,0.7888,0.5697,24381,23440,87782
